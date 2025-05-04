@@ -53,7 +53,8 @@ exports.routesConfig = {
               searchByTitle: '/search-by-title',
               markAsDone: '/mark-as-done',
               markAsNotDone: '/mark-as-not-done',
-              getCompletedTodos: '/get-completed-todos'
+              getCompletedTodos: '/get-completed-todos',
+              getIncompletedTodos: '/get-incompleted-todos'
             }
           }
         }

@@ -201,6 +201,19 @@ todo.getCompletedTodos = async (req, res, next) => {
     next(e);
   }
 };
+todo.getIncompletedTodos = async (req, res, next) => {
+  try {
+    const todos = await Todo.find({ completed: false });
+    return successResponse({
+      res,
+      code: 200,
+      message: 'Incompleted todos fetched.',
+      data: todos,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
 
 
 module.exports = todo;

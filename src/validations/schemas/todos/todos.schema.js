@@ -94,6 +94,15 @@ exports.todos = {
     v1.routes.todo.subPaths.getCompletedTodos,
   ].join('')]: {
     [GET]: Joi.object({}),
+  },
+  [[
+    baseURL,
+    todos.path,
+    v1.path,
+    v1.routes.todo.path,
+    v1.routes.todo.subPaths.getIncompletedTodos,
+  ].join('')]: {
+    [GET]: Joi.object({}),
   }
 
 };
