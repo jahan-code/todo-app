@@ -114,4 +114,16 @@ exports.todos = {
   ].join('')]: {
     [DELETE]: Joi.object({}),
   }
+  , [[
+    baseURL,
+    todos.path,
+    v1.path,
+    v1.routes.todo.path,
+    v1.routes.todo.subPaths.getTodosCreatedAfter,
+  ].join('')]: {
+    [GET]: Joi.object({
+      date: Joi.date().required()
+    }),
+  }
+
 };

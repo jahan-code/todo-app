@@ -55,7 +55,8 @@ exports.routesConfig = {
               markAsNotDone: '/mark-as-not-done',
               getCompletedTodos: '/get-completed-todos',
               getIncompletedTodos: '/get-incompleted-todos',
-              deleteAllTodos: '/delete-all-todos'
+              deleteAllTodos: '/delete-all-todos',
+              getTodosCreatedAfter: '/get-todos-created-after'
             }
           }
         }

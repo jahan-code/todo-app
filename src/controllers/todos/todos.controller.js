@@ -227,6 +227,18 @@ todo.deleteAllTodos = async (req, res, next) => {
     next(e);
   }
 };
+todo.getTodosCreatedAfter = async (req, res, next) => {
+  try {
+    const { date } = req.query;
+    if (!date) {
+      return errorResponse({ res, code: 400, message: 'Date query parameter is required.' });
+    }
+    const todos = await Todo.find({ createdAt: { $gt: new Date(date) } });
+    return successResponse({ res, code: 200, message: 'Todos fetched successfully.', data: todos });
+  } catch (e) {
+    next(e);
+  }
+};
 
 
 module.exports = todo;
