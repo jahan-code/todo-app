@@ -214,6 +214,19 @@ todo.getIncompletedTodos = async (req, res, next) => {
     next(e);
   }
 };
+todo.deleteAllTodos = async (req, res, next) => {
+  try {
+    const result = await Todo.deleteMany({});
+    return successResponse({
+      res,
+      code: 200,
+      message: 'All todos deleted successfully.',
+      data: { deletedCount: result.deletedCount },
+    });
+  } catch (e) {
+    next(e);
+  }
+};
 
 
 module.exports = todo;
