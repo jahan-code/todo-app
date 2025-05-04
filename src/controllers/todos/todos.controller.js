@@ -160,5 +160,34 @@ todo.markAsDone = async (req, res, next) => {
   }
 };
 
+todo.markAsNotDone = async (req, res, next) => {
+  try {
+    const { id } = req.query;
+
+    if (!id) {
+      return errorResponse({ res, code: 400, message: 'Todo ID is required.' });
+    }
+
+    const updatedTodo = await Todo.findByIdAndUpdate(
+      id,
+      { completed: false },
+      { new: true }
+    );
+
+    if (!updatedTodo) {
+      return errorResponse({ res, code: 404, message: 'Todo not found.' });
+    }
+
+    return successResponse({
+      res,
+      code: 200,
+      message: 'Todo marked as not done.',
+      data: updatedTodo,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
 
 module.exports = todo;

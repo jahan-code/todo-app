@@ -75,5 +75,15 @@ exports.todos = {
 
     }),
   },
+  [[
+    baseURL,
+    todos.path,
+    v1.path,
+    v1.routes.todo.path,
+    v1.routes.todo.subPaths.markAsNotDone,
+  ].join('')]: {
+    [PUT]: Joi.object({
 
+    }),
+  },
 };

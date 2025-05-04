@@ -52,7 +52,7 @@ exports.routesConfig = {
               deleteTodo: '/delete-todo',
               searchByTitle: '/search-by-title',
               markAsDone: '/mark-as-done',
-
+              markAsNotDone: '/mark-as-not-done'
             }
           }
         }
