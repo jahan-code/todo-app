@@ -11,4 +11,5 @@ router.delete(subPaths.deleteTodo, todo.deleteTodo)
 router.get(subPaths.searchByTitle, todo.searchByTitle);
 router.put(subPaths.markAsDone, todo.markAsDone);
 router.put(subPaths.markAsNotDone, todo.markAsNotDone);
+router.get(subPaths.getCompletedTodos, todo.getCompletedTodos);
 module.exports = router;

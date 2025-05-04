@@ -188,6 +188,19 @@ todo.markAsNotDone = async (req, res, next) => {
     next(e);
   }
 };
+todo.getCompletedTodos = async (req, res, next) => {
+  try {
+    const todos = await Todo.find({ completed: true });
+    return successResponse({
+      res,
+      code: 200,
+      message: 'Completed todos fetched.',
+      data: todos,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
 
 
 module.exports = todo;
