@@ -16,6 +16,7 @@ exports.todos = {
     [POST]: Joi.object({
       title: Joi.string().required(),
       description: Joi.string().required(),
+      priority: Joi.string().valid('low', 'medium', 'high'),
       completed: Joi.boolean().required(),
     }),
   },
@@ -37,8 +38,8 @@ exports.todos = {
   ].join('')]: {
     [PUT]: Joi.object({
       title: Joi.string().required(),
-      description: Joi.string().required()
-
+      description: Joi.string().required(),
+      priority: Joi.string().valid('low', 'medium', 'high')
     }),
   },
 
@@ -124,6 +125,17 @@ exports.todos = {
     [GET]: Joi.object({
       date: Joi.date().required()
     }),
-  }
+  },
+  [[
+    baseURL,
+    todos.path,
+    v1.path,
+    v1.routes.todo.path,
+    v1.routes.todo.subPaths.getTodosByPriority,
+  ].join('')]: {
+    [GET]: Joi.object({
+      priority: Joi.string().valid('low', 'medium', 'high', 'high,low', 'low,high', 'low,medium', 'medium,low', 'medium,high', 'high,medium'),
+    }),
+  },
 
 };

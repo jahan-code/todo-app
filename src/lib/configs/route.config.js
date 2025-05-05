@@ -56,7 +56,8 @@ exports.routesConfig = {
               getCompletedTodos: '/get-completed-todos',
               getIncompletedTodos: '/get-incompleted-todos',
               deleteAllTodos: '/delete-all-todos',
-              getTodosCreatedAfter: '/get-todos-created-after'
+              getTodosCreatedAfter: '/get-todos-created-after',
+              getTodosByPriority: '/get-todos-by-priority'
             }
           }
         }

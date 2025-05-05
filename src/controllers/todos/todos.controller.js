@@ -13,7 +13,7 @@ const todo = {};
 
 todo.addTodo = async (req, res, next) => {
 
-  const { title, description } = req.body;
+  const { title, description, priority } = req.body;
 
   try {
     if (!title) {
@@ -22,7 +22,7 @@ todo.addTodo = async (req, res, next) => {
     const newTodo = await Todo.create({
       title,
       description,
-
+      priority
     });
 
     return successResponse({
@@ -37,7 +37,7 @@ todo.addTodo = async (req, res, next) => {
 };
 todo.getAllTodos = async (req, res, next) => {
   try {
-    const todos = await Todo.find().select('title description');
+    const todos = await Todo.find().select('title description priority completed');
     return successResponse({
       res,
       code: 200,
@@ -51,10 +51,14 @@ todo.getAllTodos = async (req, res, next) => {
 todo.updateTodo = async (req, res, next) => {
   try {
     const { id } = req.query;
-    const { title, description } = req.body;
+    const { title, description, priority } = req.body;
     const updatedTodo = await Todo.findByIdAndUpdate(
       id,
-      { title, description },
+      {
+        title,
+        description,
+        priority
+      },
       { new: true }
     );
     if (!updatedTodo) {
@@ -239,6 +243,35 @@ todo.getTodosCreatedAfter = async (req, res, next) => {
     next(e);
   }
 };
+todo.getTodosByPriority = async (req, res, next) => {
+  try {
+    const { priority } = req.query;
+
+    if (!priority) {
+      return errorResponse({
+        res,
+        code: 400,
+        message: 'Priority query parameter is required.',
+      });
+    }
+
+    const priorities = priority.split(',');
+
+    const todos = await Todo.find({
+      priority: { $in: priorities },
+    });
+
+    return successResponse({
+      res,
+      code: 200,
+      message: 'Todos fetched successfully.',
+      data: todos,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
 
 
 module.exports = todo;

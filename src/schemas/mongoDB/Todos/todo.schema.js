@@ -5,20 +5,26 @@ exports.Todo = model(
   'Todo',
   new Schema(
     {
-    title:{
+      title: {
         type: String,
         required: true,
         trim: true,
-    },
-    description:{
+      },
+      description: {
         type: String,
         trim: true,
-    },
-    completed: {
+      },
+      completed: {
         type: Boolean,
         default: false,
       }
+      , priority: {
+        type: String,
+        enum: ['low', 'medium', 'high'],
+        default: 'medium',
+      },
     },
+
     {
       timestamps: true,
     }
